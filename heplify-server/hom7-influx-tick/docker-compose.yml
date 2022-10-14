@@ -1,27 +1,6 @@
 version: '2.1'
 
 services:
-  caddy:
-    container_name: caddy
-    image: stefanprodan/caddy
-    container_name: caddy
-    ports:
-      - "3000:3000"
-      - "9090:9090"
-      - "9093:9093"
-      - "9080:9080"
-    volumes:
-      - ./caddy/:/etc/caddy/
-    environment:
-      - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-    restart: unless-stopped
-    labels:
-      org.label-schema.group: "monitoring"
-    logging:
-      options:
-        max-size: "50m"
-
   db:
     image: postgres:11-alpine
     restart: always
@@ -69,8 +48,6 @@ services:
       - "HEPLIFYSERVER_PROMTARGETNAME="
       - "HEPLIFYSERVER_DBDROPDAYS=7"
     restart: unless-stopped
-    expose:
-      - 9090
     depends_on:
      db:
        condition: service_healthy
@@ -91,8 +68,8 @@ services:
       - "DB_PASS=homerSeven"
     ports:
       - "9080:80"
-    expose:
-      - 80
+    # expose:
+    #   - 80
     restart: unless-stopped
     volumes:
       - ./bootstrap:/app/bootstrap
@@ -162,7 +139,7 @@ services:
       - influxdb
     volumes:
       - ./conf/homer_dashboard.json:/tmp/homer_dashboard.json
-    command: 
+    command:
       - /bin/sh
       - -c
       - |
