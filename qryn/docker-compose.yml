@@ -6,7 +6,7 @@ volumes:
 
 services:
   grafana:
-    image: grafana/grafana-oss:9.1.7
+    image: grafana/grafana-oss:latest
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -20,7 +20,8 @@ services:
       - GF_EXPLORE_ENABLED=true
       - GF_ALERTING_ENABLED=false
       - GF_UNIFIED_ALERTING_ENABLED=true
-      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=k8spacket-nodegraphplugin-datasource
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=qxip-flow-panel
+      - GF_INSTALL_PLUGINS=https://github.com/metrico/grafana-flow/releases/download/v10.0.7/qxip-flow-panel-10.0.7.zip;qxip-flow-panel"
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -139,7 +140,7 @@ services:
       - clickhouse-server
 
   heplify-server:
-    image: sipcapture/heplify-server
+    image: ghcr.io/sipcapture/heplify-server:latest
     container_name: heplify-server
     ports:
       - "9060:9060"
@@ -160,6 +161,7 @@ services:
       - "HEPLIFYSERVER_DEDUP=false"
       - "HEPLIFYSERVER_LOKIURL=http://qryn:3100/loki/api/v1/push"
       - "HEPLIFYSERVER_LOKITIMER=1"
+      - "HEPLIFYSERVER_LOKIIPPORTLABELS=true"
     restart: unless-stopped
     depends_on:
       - qryn

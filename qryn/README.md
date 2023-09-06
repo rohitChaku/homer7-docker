@@ -1,7 +1,8 @@
-<img src="https://user-images.githubusercontent.com/1423657/193228934-2efaedf0-34a8-416e-b2ff-af225d7be7e9.png" width=400>
+<img src="https://github.com/sipcapture/homer7-docker/assets/1423657/36a8e515-ab0e-482b-bf49-2156e290c764" width=270>
 
-# HOMER + qryn-oss
-The ultimate **qryn.js** + **homer** docker demo w/ sample _hep traffic, logs, traces and metrics_ - _batteries included!_ :battery::battery:
+
+# homer + qryn.dev
+The ultimate  **homer** + **qryn.js** docker demo w/ sample _hep traffic, logs, traces and metrics_ - _batteries included!_ :battery::battery:
 
 > All the backend features for all supported protocols are provided by **qryn** and **clickhouse** - no other components required!
 
